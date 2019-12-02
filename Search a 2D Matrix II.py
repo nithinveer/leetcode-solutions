@@ -35,9 +35,6 @@ class Solution(object):
 
 
 
-
-
-
 matrix = [
   [1,   4,  7, 11, 15],
   [2,   5,  8, 12, 19],
