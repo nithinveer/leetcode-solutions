@@ -4,19 +4,21 @@ class Solution(object):
         :type s: str
         :rtype: List[str]
         """
-        print(len(s))
+        # print(len(s))
         found_dna = set()
         rtn_dna = set()
-
-        for i in range(len(s)-9):
-            if s[i:i+10] in found_dna:
-                rtn_dna.add(s[i:i+10])
+        tmp = s[0:10]
+        found_dna.add(tmp)
+        for i in range(10,len(s)):
+            tmp = tmp[1:] + s[i]
+            if tmp in found_dna:
+                rtn_dna.add(tmp)
             else:
-                found_dna.add(s[i:i+10])
+                found_dna.add(tmp)
 
         return(list(rtn_dna))
 
 
-s = "AAAAAAAAAAA"
+s =  "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"
 sol = Solution()
 print(sol.findRepeatedDnaSequences(s))
