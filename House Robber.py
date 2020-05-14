@@ -12,6 +12,26 @@ def rob( nums):
 
 
 
-if __name__ == '__main__':
-    nums = [2,7,9,3,1,8]
-    print(rob(nums))
+class Solution(object):
+    def rob(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        rtn = [0,0]
+        for each_ in nums:
+            tmp = [0,0]
+            tmp[0] = max(rtn)
+            tmp[1] = each_+ rtn[0]
+            rtn = tmp
+            # print(tmp)
+
+        return max(rtn)
+
+
+
+
+nums = [2,7,9,3,1]
+sol = Solution()
+print(sol.rob(nums))
+
