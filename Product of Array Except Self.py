@@ -6,11 +6,10 @@ def productExceptSelf( nums):
     for i in range(1, length):
         left[i] = left[i-1]* nums[i-1]
         right[length-1-i] = nums[length-i]*right[length-i]
-    # print(left,right)
-    rtn_lst = []
+    
     for i in range(0, length):
-        rtn_lst.append(right[i]* left[i])
-    return rtn_lst
+        nums[i] = right[i]* left[i]
+    return nums
 
 
 
