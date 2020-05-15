@@ -6,7 +6,7 @@ def productExceptSelf( nums):
     for i in range(1, length):
         left[i] = left[i-1]* nums[i-1]
         right[length-1-i] = nums[length-i]*right[length-i]
-    
+
     for i in range(0, length):
         nums[i] = right[i]* left[i]
     return nums
