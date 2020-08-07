@@ -1,33 +1,26 @@
 class Solution(object):
-    def palCheck(self,s,i,j):
-        while( i >= 0 and j <len(s)  and s[i] == s[j]):
-            # print(i)
-            i-=1
-            j+=1
-        # print(i,j)
-        return s[i+1:j]
-    def longestPalindrome(self, s):
+    def longestPalindromeSubseq(self, s):
         """
         :type s: str
-        :rtype: str
+        :rtype: int
         """
-        rtn = ''
+        rtn = [[0 for i in range(len(s))] for i in range(len(s))]
         for i in range(len(s)):
-            temp = self.palCheck(s,i,i)
-            if len(temp) > len(rtn):
-                rtn = temp
-                # print(temp,i)
+            rtn[i][i] = 1
 
-            if i < len(s)-1:
-                temp = self.palCheck(s,i,i+1)
-                if len(temp) > len(rtn):
-                    rtn = temp
-                    # print(temp, i)
-        return rtn
+        for i in range(len(s)-1,-1,-1):
+            for j in range(i+1, len(s)):
+                if s[i] == s[j]:
+                    rtn[i][j] = 2+ rtn[i+1][j-1]
+                else:
+                    rtn[i][j] = max( rtn[i+1][j], rtn[i][j-1])
 
+        return rtn[0][len(s)-1]
 
 
 
-s = 'babab'
+
+
 sol = Solution()
-print(sol.longestPalindrome(s))
+s= "bbbab"
+print(sol.longestPalindromeSubseq(s))
