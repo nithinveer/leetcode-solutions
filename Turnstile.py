@@ -5,20 +5,14 @@ def turnstile(numCustomers, arrTime, direction):
     piv = 0
     rtn = [-1]* numCustomers
     isOut = False
-    # print(rtn)
-    while arrTime[piv] == 0:
-        if direction[piv] == 1:
-            outque.append(piv)
-            isOut = True
-        else:
-            inque.append(piv)
-        piv+=1
     cost = 0
     while inque or outque or piv < numCustomers:
         print(inque, outque, piv, isOut)
         while piv < numCustomers and arrTime[piv] == cost:
             if direction[piv] == 1:
                 outque.append(piv)
+                if cost == 0:
+                    isOut = True
             else:
                 inque.append(piv)
             piv += 1
@@ -42,7 +36,7 @@ def turnstile(numCustomers, arrTime, direction):
     
     
     
-numCustomers = 4
-arrTime =   [0,0,1,5]
-direction = [0,1,1,0]
+numCustomers = 5
+arrTime =   [0,0,1,100, 100]
+direction = [0,1,1,0,1]
 print(turnstile(numCustomers, arrTime,direction))
