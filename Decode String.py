@@ -31,6 +31,45 @@ def decodeString( s):
 
 
 
+def ciscoDecode(s):
+    # return s
+    stack = []
+    digit = ''
+    for each in s:
+        if each.isdigit():
+            digit +=each
+        else:
+            if each == '}':
+                stack.pop() # poping {
+                stack.pop() # poping )
+                chars = ''
+                pop_char = stack.pop()
+                while pop_char != '(':
+                    chars = pop_char+chars
+                    pop_char = stack.pop()
+                rtn_tmp = ''
+                for i in range(int(digit)):
+                    rtn_tmp += chars
+                digit = ''
+                stack.append(rtn_tmp)
+            else:
+                stack.append(each)
+    return ("".join(x for x in stack))
+
+
+
+def ipParser():
+    lines = []
+    while True:
+        line = input()
+        if line:
+            lines.append(line)
+        else:
+            break
+    text = '\n'.join(lines)
+    print( lines)
+
 if __name__ == '__main__':
-    s = "100[leetcode]"
-    print(decodeString(s))
+    s = "(ab(a(b(c(d(e){1}){2}){2}){1}){1}){1}"
+    # print(ciscoDecode(s))
+    ipParser()
