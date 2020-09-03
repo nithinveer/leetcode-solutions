@@ -5,15 +5,18 @@ class Solution(object):
         :rtype: int
         """
         reach = 0
-        jum =[float('inf')]*len(nums)
-        jum[0] =0
-        for index, val in enumerate(nums):
-            for j in range(index+1,min(len(nums),index+1+val)):
-                jum[j] = min(jum[j],jum[index]+1)
-                if j == len(nums)-1:
-                    return jum[-1]
-            reach = max(reach, index + val)
-        return jum[-1]
+        tmp = [0]
+        used = set()
+        while tmp :
+            tmp_ =[]
+            for each in tmp:
+                if each >= len(nums)-1:
+                    return reach
+                for i in range(1,nums[each]+1):
+                    tmp_.append(i+each)
+            tmp = tmp_
+            reach +=1
+
 
 nums =  [2,3,1,1,4]
 sol=Solution()
