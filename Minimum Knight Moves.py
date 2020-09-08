@@ -26,11 +26,7 @@ class Solution(object):
                     visited.add((a,b))
                     closest = min(dist, closest)
             tmp= tmp_
-            # print(len(tmp))
-            # print(tmp_)
             steps +=1
-            # if steps ==3:
-            #     exit(0)
 
 
 
