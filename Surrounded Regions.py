@@ -6,7 +6,7 @@ class Solution(object):
         return False
 
 
-    def solve(self, board):
+    def solve(self, board):z`
         """
         :type board: List[List[str]]
         :rtype: None Do not return anything, modify board in-place instead.
