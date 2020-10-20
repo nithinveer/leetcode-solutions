@@ -1,4 +1,4 @@
-from collections import  defaultdict
+from collections import  defaultdict, deque
 class Solution(object):
     def printLst(self,mat):
         for each_mat in mat:
@@ -83,6 +83,35 @@ class Solution(object):
         else:
             return rtn
 
+
+    def findCheapestPriceBFSQ(self, n, flights, src, dst, K):
+        """
+        :type n: int
+        :type flights: List[List[int]]
+        :type src: int
+        :type dst: int
+        :type K: int
+        :rtype: int
+        """
+        mapps = defaultdict(list)
+        cities = {}
+        
+        for each_flight in flights:
+            mapps[each_flight[0]].append([each_flight[1], each_flight[2]])
+        
+        queue = deque([])
+        queue.append((src,0,0))
+        
+        while queue :
+            city, distance, stops = queue.popleft()
+            if (city in cities  and cities[city] > distance) or (city not in cities):
+                cities[city] = distance
+            if stops <= K:
+                for each_neighbour in mapps[city] :
+                    if (each_neighbour[0] in cities and cities[each_neighbour[0]] > distance + each_neighbour[1]) or (each_neighbour[0] not in cities):
+                        queue.append((each_neighbour[0], each_neighbour[1]+ distance, stops+1))
+        if dst not in cities: return -1
+        else: return cities[dst]        
 
 
 
