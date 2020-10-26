@@ -6,21 +6,16 @@ class Solution(object):
         :rtype: List[int]
         """
         rtn = [0]*length 
-        if not updates :
-            return rtn
-        periods = []
         
         for update in updates :
-            periods.append([update[0], update[2]])
-            periods.append([update[1]+1, -update[2]])
-        periods.sort(key=lambda x:x[0])
-        piv = 0
+            rtn[update[0]] += update[2]
+            if update[1]+1 < length:
+                rtn[update[1]+1] -= update[2]
         
-        inc = 0
+        val = 0
         for index in range(length):
-            while piv < len(periods) and index == periods[piv][0]:
-                inc += periods[piv][1]
-                piv +=1
-            rtn[index] = inc
+            val += rtn[index]
+            rtn[index] = val
         return rtn
+            
             
